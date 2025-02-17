@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Posteo</title>
+    <link rel="stylesheet" href="{% static 'publicaciones/css/styles.css' %}">
+</head>
+<body>
+    <h1>Crear Posteo</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="{% url 'lista_posteos' %}">Ver lista de posteos</a>
+</body>
+</html>

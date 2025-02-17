@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Posteos</title>
+    <link rel="stylesheet" href="{% static 'publicaciones/css/styles.css' %}">
+</head>
+<body>
+    <h1>Lista de Posteos.</h1>
+    <ul>
+        {% for posteo in posteos %}
+            <li>
+                <strong>{{ posteo.nombre }} {{ posteo.apellido }}</strong> ({{ posteo.fecha_creacion }}):<br>
+                {{ posteo.posteo }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'crear_posteo' %}">Crear nuevo posteo</a>
+</body>
+</html>
