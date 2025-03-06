@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block titulo %}ForoToronja{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="menu" id="nav">
+        <a href="{% url 'inicio' %}"> Inicio   </a>
+        <a href="{% url 'acerca_de' %}"> Acerca de   </a>
+        <a href="{% url 'paginas:lista' %}">Posteos   </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'cuentas:perfil' user.pk %}"> Perfil</a>
+        <form action="{% url 'cuentas:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit"> Cerrar sesión   </button>
+        </form>
+        {% else %}
+        <form action="{% url 'cuentas:login' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn"> Iniciar sesión   </button>
+        </form>
+        <form action="{% url 'cuentas:registro' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn"> Registrarse    </button>
+        </form>
+        {% endif %}
+    </nav>
+    {% block contenido %}{% endblock %}
+</body>
+</html>

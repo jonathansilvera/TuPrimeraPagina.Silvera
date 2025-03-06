@@ -16,4 +16,9 @@ def lista_posteos(request):
     posteos = Posteo.objects.all().order_by('-fecha_creacion')  
     return render(request, 'publicaciones/lista_posteos.html', {'posteos': posteos})
 
+def inicio(request):
+    return render(request, 'inicio.html')
+
+def acerca_de(request):
+    return render(request, 'acerca_de.html')
  

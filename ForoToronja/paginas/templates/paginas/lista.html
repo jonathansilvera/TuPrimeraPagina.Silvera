@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts - ForoToronja{% endblock %}
+
+{% block contenido %}
+<h1 class='titulo-posteos'>Lista de Posteos</h1>
+<div class='container lista-posteos'>
+{% if paginas %}
+    <ul>
+    {% for pagina in paginas %}
+        <li>
+            <a href="{% url 'paginas:detalle' pagina.id %}">{{ pagina.titulo }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay páginas aún.</p>
+{% endif %}
+</div>
+<a href="{% url 'paginas:crear' %}" class='crear-posteo'>Crear nuevo posteo</a>
+{% endblock %}

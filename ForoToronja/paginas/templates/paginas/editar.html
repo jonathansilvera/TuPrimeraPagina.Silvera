@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>Editar Página</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+</form>
+<a href="{% url 'paginas:lista' %}">Cancelar</a>
+{% endblock %}

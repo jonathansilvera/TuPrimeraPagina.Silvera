@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block titulo %}{{ pagina.titulo }} - ForoToronja{% endblock %}
+
+{% block contenido %}
+    <h1>Titulo: {{ pagina.titulo }}</h1>
+    <h2>Subtitulo: {{ pagina.subtitulo }}</h2>
+    <img src="{{ pagina.imagen.url }}" alt="{{ pagina.titulo }}" class="pagina-img" style="max-width: 50%;
+    height: auto;">
+    <p>Detalles: {{ pagina.contenido }}</p>
+    <p>Fecha: {{ pagina.fecha }}</p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'paginas:editar' pagina.id %}">Editar</a>
+        <a href="{% url 'paginas:eliminar' pagina.id %}">Eliminar</a>
+    {% endif %}
+{% endblock %}

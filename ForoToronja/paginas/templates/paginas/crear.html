@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>Crear Nuevo Posteo</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear</button>
+</form>
+<a href="{% url 'paginas:lista' %}">Cancelar</a>
+{% endblock %}

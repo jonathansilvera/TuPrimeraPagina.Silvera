@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Mensaje - ForoToronja{% endblock %}
+
+{% block contenido %}
+    <h1>Mensaje de {{ mensaje.remitente }}</h1>
+    <p>Fecha: {{ mensaje.fecha }}</p>
+    <p>{{ mensaje.contenido }}</p>
+    <a href="{% url 'mensajeria:bandeja_entrada' %}">Volver a la bandeja de entrada</a>
+{% endblock %}

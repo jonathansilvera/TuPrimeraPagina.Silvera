@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bandeja de entrada - ForoToronja{% endblock %}
+
+{% block contenido %}
+    <h1>Bandeja de entrada</h1>
+    {% if mensajes %}
+        <ul>
+            {% for mensaje in mensajes %}
+                <li>
+                    <a href="{% url 'mensajeria:detalle_mensaje' mensaje.id %}">
+                        De: {{ mensaje.remitente }} - {{ mensaje.fecha }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes mensajes nuevos.</p>
+    {% endif %}
+{% endblock %}

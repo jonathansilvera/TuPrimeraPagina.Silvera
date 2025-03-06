@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+{% block titulo %}Perfil - ForoToronja{% endblock %}
+
+{% block contenido %}
+<h1>{{ user.username }}</h1>
+    {% if perfil.avatar %}
+    <img src="{{ perfil.avatar.url }}" alt="Avatar de {{ perfil.user.username }}" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+    {% else %}
+    <p>No hay avatar disponible.</p>
+    {% endif %}
+<div class='contenedor'>
+    <p>Biografia: {{ perfil.bio }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Fecha de nacimiento: {{ user.perfil.fecha_nacimiento }}</p>
+</div>
+    <a href="{% url 'cuentas:editar_perfil' user.perfil.pk %}">Editar perfil</a>
+{% endblock %}
