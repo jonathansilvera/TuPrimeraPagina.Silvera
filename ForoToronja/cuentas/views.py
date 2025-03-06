@@ -3,29 +3,19 @@ from django.views.generic import CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from .models import Perfil
 from .forms import FormularioRegistroUsuario, FormularioActualizarPerfil
+from django.contrib.auth import login
 
 
 
 class RegistroUsuarioView(CreateView):
     form_class = FormularioRegistroUsuario
     template_name = 'cuentas/registro.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('inicio')  # Redirige después del registro exitoso
+
     def form_valid(self, form):
-        user = form.save(commit=False)
-        user.save()
-    
-    def registro(request):
-        if request.method == 'POST':
-            form = UserCreationForm(request.POST)
-            if form.is_valid():
-                user = form.save()
-                login(request, user)
-                return redirect('inicio') 
-            else:
-                return render(request, 'cuentas/registro.html', {'form': form})
-        else:        
-            form = UserCreationForm()
-            return render(request, 'cuentas/registro.html', {'form': form})
+        user = form.save()
+        login(self.request, user)  # Inicia sesión automáticamente después del registro
+        return super().form_valid(form)  # Retorna la respuesta adecuada
         
 
 class LoginView(LoginView):
